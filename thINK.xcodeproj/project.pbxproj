@@ -1,0 +1,672 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71A39DC81D930A0400CA1CC7 /* GreetingtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DC71D930A0400CA1CC7 /* GreetingtView.swift */; };
+		71A39DCA1D9311F400CA1CC7 /* GoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DC91D9311F400CA1CC7 /* GoButton.swift */; };
+		71A39DCC1D9317BD00CA1CC7 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DCB1D9317BD00CA1CC7 /* BaseUIView.swift */; };
+		71A39DCE1D93184E00CA1CC7 /* Think2016.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DCD1D93184E00CA1CC7 /* Think2016.swift */; };
+		71A39DD01D93186400CA1CC7 /* AboutThink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DCF1D93186400CA1CC7 /* AboutThink.swift */; };
+		71A39DD21D93187F00CA1CC7 /* DownloadMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DD11D93187F00CA1CC7 /* DownloadMarker.swift */; };
+		71A39DD41D93189F00CA1CC7 /* ContactThink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DD31D93189F00CA1CC7 /* ContactThink.swift */; };
+		71A39DD61D9318BD00CA1CC7 /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DD51D9318BD00CA1CC7 /* Privacy.swift */; };
+		71A39DD81D931B4600CA1CC7 /* MarkerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DD71D931B4600CA1CC7 /* MarkerCell.swift */; };
+		71A39DDB1D931B6F00CA1CC7 /* Marker1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A39DD91D931B6F00CA1CC7 /* Marker1.png */; };
+		71A39DDC1D931B6F00CA1CC7 /* Marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A39DDA1D931B6F00CA1CC7 /* Marker2.png */; };
+		71A39DDE1D931B9300CA1CC7 /* MarkerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DDD1D931B9300CA1CC7 /* MarkerProtocol.swift */; };
+		71A39DE01D931CC200CA1CC7 /* MenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DDF1D931CC200CA1CC7 /* MenuProtocol.swift */; };
+		71A39DE21D931CD800CA1CC7 /* CustomButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DE11D931CD800CA1CC7 /* CustomButtonProtocol.swift */; };
+		71A39DEE1D93281B00CA1CC7 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A39DED1D93281B00CA1CC7 /* Menu.swift */; };
+		71E226B71D91B577003EF5B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E226B61D91B577003EF5B8 /* AppDelegate.swift */; };
+		71E226B91D91B577003EF5B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E226B81D91B577003EF5B8 /* HomeViewController.swift */; };
+		71E226BC1D91B577003EF5B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71E226BA1D91B577003EF5B8 /* Main.storyboard */; };
+		71E226BE1D91B577003EF5B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71E226BD1D91B577003EF5B8 /* Assets.xcassets */; };
+		71E226C11D91B577003EF5B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71E226BF1D91B577003EF5B8 /* LaunchScreen.storyboard */; };
+		71E226CC1D91B577003EF5B8 /* thINKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E226CB1D91B577003EF5B8 /* thINKTests.swift */; };
+		71E226D71D91B577003EF5B8 /* thINKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E226D61D91B577003EF5B8 /* thINKUITests.swift */; };
+		71E226EB1D91B7C1003EF5B8 /* img-hdrWarm.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E226E71D91B7C1003EF5B8 /* img-hdrWarm.png */; };
+		71E226EC1D91B7C1003EF5B8 /* img-think-logo-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E226E81D91B7C1003EF5B8 /* img-think-logo-white.png */; };
+		71E226ED1D91B7C1003EF5B8 /* img-thinkapp-bkgrd.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E226E91D91B7C1003EF5B8 /* img-thinkapp-bkgrd.png */; };
+		71E226EE1D91B7C1003EF5B8 /* img-thinkevent-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E226EA1D91B7C1003EF5B8 /* img-thinkevent-logo.png */; };
+		71E226F21D91BACC003EF5B8 /* ARBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E226F11D91BACC003EF5B8 /* ARBrowserViewController.swift */; };
+		71E226F41D91C134003EF5B8 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E226F31D91C134003EF5B8 /* hamburger.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		71E226C81D91B577003EF5B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71E226AB1D91B577003EF5B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71E226B21D91B577003EF5B8;
+			remoteInfo = thINK;
+		};
+		71E226D31D91B577003EF5B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71E226AB1D91B577003EF5B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71E226B21D91B577003EF5B8;
+			remoteInfo = thINK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		71A39DC71D930A0400CA1CC7 /* GreetingtView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingtView.swift; sourceTree = "<group>"; };
+		71A39DC91D9311F400CA1CC7 /* GoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoButton.swift; sourceTree = "<group>"; };
+		71A39DCB1D9317BD00CA1CC7 /* BaseUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		71A39DCD1D93184E00CA1CC7 /* Think2016.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Think2016.swift; sourceTree = "<group>"; };
+		71A39DCF1D93186400CA1CC7 /* AboutThink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutThink.swift; sourceTree = "<group>"; };
+		71A39DD11D93187F00CA1CC7 /* DownloadMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadMarker.swift; sourceTree = "<group>"; };
+		71A39DD31D93189F00CA1CC7 /* ContactThink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactThink.swift; sourceTree = "<group>"; };
+		71A39DD51D9318BD00CA1CC7 /* Privacy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
+		71A39DD71D931B4600CA1CC7 /* MarkerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerCell.swift; sourceTree = "<group>"; };
+		71A39DD91D931B6F00CA1CC7 /* Marker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Marker1.png; sourceTree = "<group>"; };
+		71A39DDA1D931B6F00CA1CC7 /* Marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Marker2.png; sourceTree = "<group>"; };
+		71A39DDD1D931B9300CA1CC7 /* MarkerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerProtocol.swift; sourceTree = "<group>"; };
+		71A39DDF1D931CC200CA1CC7 /* MenuProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProtocol.swift; sourceTree = "<group>"; };
+		71A39DE11D931CD800CA1CC7 /* CustomButtonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonProtocol.swift; sourceTree = "<group>"; };
+		71A39DED1D93281B00CA1CC7 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		71E226B31D91B577003EF5B8 /* thINK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thINK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E226B61D91B577003EF5B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		71E226B81D91B577003EF5B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		71E226BB1D91B577003EF5B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		71E226BD1D91B577003EF5B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = thINK/Assets.xcassets; sourceTree = "<group>"; };
+		71E226C01D91B577003EF5B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		71E226C21D91B577003EF5B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = thINK/Info.plist; sourceTree = "<group>"; };
+		71E226C71D91B577003EF5B8 /* thINKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = thINKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E226CB1D91B577003EF5B8 /* thINKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thINKTests.swift; sourceTree = "<group>"; };
+		71E226CD1D91B577003EF5B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71E226D21D91B577003EF5B8 /* thINKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = thINKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E226D61D91B577003EF5B8 /* thINKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thINKUITests.swift; sourceTree = "<group>"; };
+		71E226D81D91B577003EF5B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71E226E71D91B7C1003EF5B8 /* img-hdrWarm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-hdrWarm.png"; sourceTree = "<group>"; };
+		71E226E81D91B7C1003EF5B8 /* img-think-logo-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-think-logo-white.png"; sourceTree = "<group>"; };
+		71E226E91D91B7C1003EF5B8 /* img-thinkapp-bkgrd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-thinkapp-bkgrd.png"; sourceTree = "<group>"; };
+		71E226EA1D91B7C1003EF5B8 /* img-thinkevent-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-thinkevent-logo.png"; sourceTree = "<group>"; };
+		71E226F11D91BACC003EF5B8 /* ARBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARBrowserViewController.swift; sourceTree = "<group>"; };
+		71E226F31D91C134003EF5B8 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71E226B01D91B577003EF5B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E226C41D91B577003EF5B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E226CF1D91B577003EF5B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71A39DC61D9309D700CA1CC7 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				71A39DC71D930A0400CA1CC7 /* GreetingtView.swift */,
+				71A39DC91D9311F400CA1CC7 /* GoButton.swift */,
+				71A39DD71D931B4600CA1CC7 /* MarkerCell.swift */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		71E226AA1D91B577003EF5B8 = {
+			isa = PBXGroup;
+			children = (
+				71E226B51D91B577003EF5B8 /* thINK */,
+				71E226E61D91B636003EF5B8 /* SupportingFiles */,
+				71E226E41D91B605003EF5B8 /* UserInterface */,
+				71E226E51D91B615003EF5B8 /* Images */,
+				71E226CA1D91B577003EF5B8 /* thINKTests */,
+				71E226D51D91B577003EF5B8 /* thINKUITests */,
+				71E226B41D91B577003EF5B8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		71E226B41D91B577003EF5B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71E226B31D91B577003EF5B8 /* thINK.app */,
+				71E226C71D91B577003EF5B8 /* thINKTests.xctest */,
+				71E226D21D91B577003EF5B8 /* thINKUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		71E226B51D91B577003EF5B8 /* thINK */ = {
+			isa = PBXGroup;
+			children = (
+				71E226B61D91B577003EF5B8 /* AppDelegate.swift */,
+				71E226B81D91B577003EF5B8 /* HomeViewController.swift */,
+				71E226F11D91BACC003EF5B8 /* ARBrowserViewController.swift */,
+				71A39DC61D9309D700CA1CC7 /* CustomViews */,
+				71E226EF1D91BA9E003EF5B8 /* Menu */,
+				71E226F01D91BAA4003EF5B8 /* Protocols */,
+			);
+			path = thINK;
+			sourceTree = "<group>";
+		};
+		71E226CA1D91B577003EF5B8 /* thINKTests */ = {
+			isa = PBXGroup;
+			children = (
+				71E226CB1D91B577003EF5B8 /* thINKTests.swift */,
+				71E226CD1D91B577003EF5B8 /* Info.plist */,
+			);
+			path = thINKTests;
+			sourceTree = "<group>";
+		};
+		71E226D51D91B577003EF5B8 /* thINKUITests */ = {
+			isa = PBXGroup;
+			children = (
+				71E226D61D91B577003EF5B8 /* thINKUITests.swift */,
+				71E226D81D91B577003EF5B8 /* Info.plist */,
+			);
+			path = thINKUITests;
+			sourceTree = "<group>";
+		};
+		71E226E41D91B605003EF5B8 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				71E226BA1D91B577003EF5B8 /* Main.storyboard */,
+				71E226BF1D91B577003EF5B8 /* LaunchScreen.storyboard */,
+			);
+			name = UserInterface;
+			sourceTree = "<group>";
+		};
+		71E226E51D91B615003EF5B8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				71A39DD91D931B6F00CA1CC7 /* Marker1.png */,
+				71A39DDA1D931B6F00CA1CC7 /* Marker2.png */,
+				71E226F31D91C134003EF5B8 /* hamburger.png */,
+				71E226E71D91B7C1003EF5B8 /* img-hdrWarm.png */,
+				71E226E81D91B7C1003EF5B8 /* img-think-logo-white.png */,
+				71E226E91D91B7C1003EF5B8 /* img-thinkapp-bkgrd.png */,
+				71E226EA1D91B7C1003EF5B8 /* img-thinkevent-logo.png */,
+				71E226BD1D91B577003EF5B8 /* Assets.xcassets */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		71E226E61D91B636003EF5B8 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				71E226C21D91B577003EF5B8 /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		71E226EF1D91BA9E003EF5B8 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				71A39DCB1D9317BD00CA1CC7 /* BaseUIView.swift */,
+				71A39DCD1D93184E00CA1CC7 /* Think2016.swift */,
+				71A39DCF1D93186400CA1CC7 /* AboutThink.swift */,
+				71A39DD11D93187F00CA1CC7 /* DownloadMarker.swift */,
+				71A39DD31D93189F00CA1CC7 /* ContactThink.swift */,
+				71A39DD51D9318BD00CA1CC7 /* Privacy.swift */,
+				71A39DED1D93281B00CA1CC7 /* Menu.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		71E226F01D91BAA4003EF5B8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				71A39DDD1D931B9300CA1CC7 /* MarkerProtocol.swift */,
+				71A39DDF1D931CC200CA1CC7 /* MenuProtocol.swift */,
+				71A39DE11D931CD800CA1CC7 /* CustomButtonProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71E226B21D91B577003EF5B8 /* thINK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71E226DB1D91B577003EF5B8 /* Build configuration list for PBXNativeTarget "thINK" */;
+			buildPhases = (
+				71E226AF1D91B577003EF5B8 /* Sources */,
+				71E226B01D91B577003EF5B8 /* Frameworks */,
+				71E226B11D91B577003EF5B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = thINK;
+			productName = thINK;
+			productReference = 71E226B31D91B577003EF5B8 /* thINK.app */;
+			productType = "com.apple.product-type.application";
+		};
+		71E226C61D91B577003EF5B8 /* thINKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71E226DE1D91B577003EF5B8 /* Build configuration list for PBXNativeTarget "thINKTests" */;
+			buildPhases = (
+				71E226C31D91B577003EF5B8 /* Sources */,
+				71E226C41D91B577003EF5B8 /* Frameworks */,
+				71E226C51D91B577003EF5B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71E226C91D91B577003EF5B8 /* PBXTargetDependency */,
+			);
+			name = thINKTests;
+			productName = thINKTests;
+			productReference = 71E226C71D91B577003EF5B8 /* thINKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		71E226D11D91B577003EF5B8 /* thINKUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71E226E11D91B577003EF5B8 /* Build configuration list for PBXNativeTarget "thINKUITests" */;
+			buildPhases = (
+				71E226CE1D91B577003EF5B8 /* Sources */,
+				71E226CF1D91B577003EF5B8 /* Frameworks */,
+				71E226D01D91B577003EF5B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71E226D41D91B577003EF5B8 /* PBXTargetDependency */,
+			);
+			name = thINKUITests;
+			productName = thINKUITests;
+			productReference = 71E226D21D91B577003EF5B8 /* thINKUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71E226AB1D91B577003EF5B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Trekk Design";
+				TargetAttributes = {
+					71E226B21D91B577003EF5B8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 477HKM2JBJ;
+						ProvisioningStyle = Automatic;
+					};
+					71E226C61D91B577003EF5B8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 477HKM2JBJ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 71E226B21D91B577003EF5B8;
+					};
+					71E226D11D91B577003EF5B8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 477HKM2JBJ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 71E226B21D91B577003EF5B8;
+					};
+				};
+			};
+			buildConfigurationList = 71E226AE1D91B577003EF5B8 /* Build configuration list for PBXProject "thINK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 71E226AA1D91B577003EF5B8;
+			productRefGroup = 71E226B41D91B577003EF5B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71E226B21D91B577003EF5B8 /* thINK */,
+				71E226C61D91B577003EF5B8 /* thINKTests */,
+				71E226D11D91B577003EF5B8 /* thINKUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71E226B11D91B577003EF5B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71E226C11D91B577003EF5B8 /* LaunchScreen.storyboard in Resources */,
+				71E226EB1D91B7C1003EF5B8 /* img-hdrWarm.png in Resources */,
+				71A39DDC1D931B6F00CA1CC7 /* Marker2.png in Resources */,
+				71E226EE1D91B7C1003EF5B8 /* img-thinkevent-logo.png in Resources */,
+				71E226BE1D91B577003EF5B8 /* Assets.xcassets in Resources */,
+				71E226ED1D91B7C1003EF5B8 /* img-thinkapp-bkgrd.png in Resources */,
+				71E226F41D91C134003EF5B8 /* hamburger.png in Resources */,
+				71E226BC1D91B577003EF5B8 /* Main.storyboard in Resources */,
+				71A39DDB1D931B6F00CA1CC7 /* Marker1.png in Resources */,
+				71E226EC1D91B7C1003EF5B8 /* img-think-logo-white.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E226C51D91B577003EF5B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E226D01D91B577003EF5B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71E226AF1D91B577003EF5B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A39DE01D931CC200CA1CC7 /* MenuProtocol.swift in Sources */,
+				71A39DCE1D93184E00CA1CC7 /* Think2016.swift in Sources */,
+				71A39DD81D931B4600CA1CC7 /* MarkerCell.swift in Sources */,
+				71E226F21D91BACC003EF5B8 /* ARBrowserViewController.swift in Sources */,
+				71A39DE21D931CD800CA1CC7 /* CustomButtonProtocol.swift in Sources */,
+				71E226B91D91B577003EF5B8 /* HomeViewController.swift in Sources */,
+				71A39DD21D93187F00CA1CC7 /* DownloadMarker.swift in Sources */,
+				71E226B71D91B577003EF5B8 /* AppDelegate.swift in Sources */,
+				71A39DD01D93186400CA1CC7 /* AboutThink.swift in Sources */,
+				71A39DCA1D9311F400CA1CC7 /* GoButton.swift in Sources */,
+				71A39DEE1D93281B00CA1CC7 /* Menu.swift in Sources */,
+				71A39DDE1D931B9300CA1CC7 /* MarkerProtocol.swift in Sources */,
+				71A39DD41D93189F00CA1CC7 /* ContactThink.swift in Sources */,
+				71A39DC81D930A0400CA1CC7 /* GreetingtView.swift in Sources */,
+				71A39DCC1D9317BD00CA1CC7 /* BaseUIView.swift in Sources */,
+				71A39DD61D9318BD00CA1CC7 /* Privacy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E226C31D91B577003EF5B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71E226CC1D91B577003EF5B8 /* thINKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71E226CE1D91B577003EF5B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71E226D71D91B577003EF5B8 /* thINKUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		71E226C91D91B577003EF5B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71E226B21D91B577003EF5B8 /* thINK */;
+			targetProxy = 71E226C81D91B577003EF5B8 /* PBXContainerItemProxy */;
+		};
+		71E226D41D91B577003EF5B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71E226B21D91B577003EF5B8 /* thINK */;
+			targetProxy = 71E226D31D91B577003EF5B8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		71E226BA1D91B577003EF5B8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71E226BB1D91B577003EF5B8 /* Base */,
+			);
+			name = Main.storyboard;
+			path = thINK;
+			sourceTree = "<group>";
+		};
+		71E226BF1D91B577003EF5B8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71E226C01D91B577003EF5B8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = thINK;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		71E226D91D91B577003EF5B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		71E226DA1D91B577003EF5B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		71E226DC1D91B577003EF5B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 477HKM2JBJ;
+				INFOPLIST_FILE = thINK/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Trekk-Design.thINK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		71E226DD1D91B577003EF5B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 477HKM2JBJ;
+				INFOPLIST_FILE = thINK/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Trekk-Design.thINK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		71E226DF1D91B577003EF5B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 477HKM2JBJ;
+				INFOPLIST_FILE = thINKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Trekk-Design.thINKTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/thINK.app/thINK";
+			};
+			name = Debug;
+		};
+		71E226E01D91B577003EF5B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 477HKM2JBJ;
+				INFOPLIST_FILE = thINKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Trekk-Design.thINKTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/thINK.app/thINK";
+			};
+			name = Release;
+		};
+		71E226E21D91B577003EF5B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 477HKM2JBJ;
+				INFOPLIST_FILE = thINKUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Trekk-Design.thINKUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = thINK;
+			};
+			name = Debug;
+		};
+		71E226E31D91B577003EF5B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 477HKM2JBJ;
+				INFOPLIST_FILE = thINKUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Trekk-Design.thINKUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = thINK;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		71E226AE1D91B577003EF5B8 /* Build configuration list for PBXProject "thINK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71E226D91D91B577003EF5B8 /* Debug */,
+				71E226DA1D91B577003EF5B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71E226DB1D91B577003EF5B8 /* Build configuration list for PBXNativeTarget "thINK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71E226DC1D91B577003EF5B8 /* Debug */,
+				71E226DD1D91B577003EF5B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71E226DE1D91B577003EF5B8 /* Build configuration list for PBXNativeTarget "thINKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71E226DF1D91B577003EF5B8 /* Debug */,
+				71E226E01D91B577003EF5B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71E226E11D91B577003EF5B8 /* Build configuration list for PBXNativeTarget "thINKUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71E226E21D91B577003EF5B8 /* Debug */,
+				71E226E31D91B577003EF5B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 71E226AB1D91B577003EF5B8 /* Project object */;
+}

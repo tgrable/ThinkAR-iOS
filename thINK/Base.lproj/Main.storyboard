@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="thINK" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-thinkapp-bkgrd.png" translatesAutoresizingMaskIntoConstraints="NO" id="8mX-DZ-fjC"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-think-logo-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="LF1-Re-eZo">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="7rC-L9-G4x"/>
+                                    <constraint firstAttribute="width" constant="245" id="lOH-EV-Ac7"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pk9-ge-OtW" userLabel="NavBar">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eya-pZ-TJl" userLabel="Hamburger">
+                                        <frame key="frameInset" minX="20" minY="8" width="40" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="hamburger.png"/>
+                                        <connections>
+                                            <action selector="menuActionWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WK9-8J-jdP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.25098039215686274" green="0.60392156862745094" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Explore augmented reality experiences in thINK events and in thINK communications.  Look for the thINK AR icon." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bl-gJ-Dgh" userLabel="Greeting" customClass="GreetingView" customModule="thINK" customModuleProvider="target">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kT-hp-pp8" customClass="GoButton" customModule="thINK" customModuleProvider="target">
+                                <color key="backgroundColor" red="0.25098039215686274" green="0.60392156862745094" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="131" id="NbI-Jb-n8X"/>
+                                    <constraint firstAttribute="height" constant="44" id="kYH-VF-Nsb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                <state key="normal" title="Go"/>
+                                <connections>
+                                    <action selector="goActionWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nFM-hG-1fH"/>
+                                    <segue destination="iub-30-MQq" kind="show" identifier="HomeToARBrowser" id="eDJ-6H-uLj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Pk9-ge-OtW" secondAttribute="trailing" id="1EG-GF-xHk"/>
+                            <constraint firstItem="Pk9-ge-OtW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EIQ-vS-XYt"/>
+                            <constraint firstItem="5kT-hp-pp8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gto-eV-VzK"/>
+                            <constraint firstItem="8mX-DZ-fjC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HDN-Lf-VfG"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8mX-DZ-fjC" secondAttribute="bottom" id="NbA-0F-mhD"/>
+                            <constraint firstItem="LF1-Re-eZo" firstAttribute="centerX" secondItem="8mX-DZ-fjC" secondAttribute="centerX" id="Tsn-4C-C6u"/>
+                            <constraint firstItem="LF1-Re-eZo" firstAttribute="top" secondItem="Pk9-ge-OtW" secondAttribute="bottom" constant="152" id="XXo-fj-rL7"/>
+                            <constraint firstItem="9Bl-gJ-Dgh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="awh-Ft-SzH"/>
+                            <constraint firstItem="LF1-Re-eZo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="197" id="cd6-wI-Agz"/>
+                            <constraint firstItem="9Bl-gJ-Dgh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="22" id="cey-46-y1s"/>
+                            <constraint firstItem="8mX-DZ-fjC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="emh-rM-oxg"/>
+                            <constraint firstItem="9Bl-gJ-Dgh" firstAttribute="top" secondItem="LF1-Re-eZo" secondAttribute="bottom" constant="19" id="kqz-NI-6vr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5kT-hp-pp8" secondAttribute="bottom" constant="80" id="lUJ-dQ-rBT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9Bl-gJ-Dgh" secondAttribute="bottom" constant="192" id="lWc-h7-gBy"/>
+                            <constraint firstAttribute="trailing" secondItem="8mX-DZ-fjC" secondAttribute="trailing" id="nBu-IH-cYA"/>
+                            <constraint firstItem="Pk9-ge-OtW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ta5-Ta-t5u"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backgroudImage" destination="8mX-DZ-fjC" id="Lf7-gq-ud6"/>
+                        <outlet property="goButton" destination="5kT-hp-pp8" id="wBt-O6-1Yc"/>
+                        <outlet property="greeting" destination="9Bl-gJ-Dgh" id="1qM-eb-f6U"/>
+                        <outlet property="hamburgerButton" destination="eya-pZ-TJl" id="ip9-EU-IT4"/>
+                        <outlet property="logoImage" destination="LF1-Re-eZo" id="wfl-Js-vC4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="113.04347826086958" y="121.46739130434784"/>
+        </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="iSv-1f-Zv1">
+            <objects>
+                <viewController id="iub-30-MQq" customClass="ARBrowserViewController" customModule="thINK" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RYd-vc-t9W"/>
+                        <viewControllerLayoutGuide type="bottom" id="6bw-dQ-M2Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Iln-Yk-obj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3s-hr-M9R">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EoY-g9-fCd">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOx-va-aMW" userLabel="Hamburger">
+                                                <frame key="frameInset" minX="20" minY="8" width="40" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="hamburger.png"/>
+                                                <connections>
+                                                    <action selector="menuActionWithSender:" destination="iub-30-MQq" eventType="touchUpInside" id="3XW-Vz-uWX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.25490196078431371" green="0.60392156862745094" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="68w-Pl-0di"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="EoY-g9-fCd" firstAttribute="leading" secondItem="P3s-hr-M9R" secondAttribute="leading" id="Fsf-hh-ns1"/>
+                                    <constraint firstItem="EoY-g9-fCd" firstAttribute="top" secondItem="P3s-hr-M9R" secondAttribute="top" id="cW2-TY-l21"/>
+                                    <constraint firstAttribute="trailing" secondItem="EoY-g9-fCd" secondAttribute="trailing" id="cqp-Uu-fTO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="P3s-hr-M9R" secondAttribute="trailing" id="4up-Rt-2LI"/>
+                            <constraint firstItem="6bw-dQ-M2Q" firstAttribute="top" secondItem="P3s-hr-M9R" secondAttribute="bottom" id="IhY-bS-TVY"/>
+                            <constraint firstItem="P3s-hr-M9R" firstAttribute="top" secondItem="Iln-Yk-obj" secondAttribute="top" id="MHE-LF-fEe"/>
+                            <constraint firstItem="P3s-hr-M9R" firstAttribute="leading" secondItem="Iln-Yk-obj" secondAttribute="leading" id="zyp-f6-WpD"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="hamburgerButton" destination="UOx-va-aMW" id="72J-W9-G8O"/>
+                        <outlet property="parentUnityView" destination="P3s-hr-M9R" id="Dva-OJ-ldw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YaO-bU-eU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057.9710144927537" y="120.65217391304348"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="hamburger.png" width="176" height="167"/>
+        <image name="img-think-logo-white.png" width="490" height="145"/>
+        <image name="img-thinkapp-bkgrd.png" width="750" height="1208"/>
+    </resources>
+</document>
