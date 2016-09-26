@@ -10,6 +10,11 @@
 
 // MarkerProtocol calls back to any ViewController conforming to it
 protocol CustomButtonProtocol: class {
-    // This function calls back to the view controller to send a user out to a URL
-    func learnMoreLink(url: String)
+
+    // Call thINK
+    func callthINK(scheme: String)
+    // Email thINK
+    func emailthINK(email: String)
+    // Open Privacy Statement
+    //func openPrivacyStatement(url: String)
 }

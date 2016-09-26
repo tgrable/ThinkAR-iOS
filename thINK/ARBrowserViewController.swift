@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import MessageUI
 
-class ARBrowserViewController: UIViewController, MenuProtocol {
+class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, CustomButtonProtocol, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var parentUnityView: UIView?
     @IBOutlet weak var hamburgerButton: UIButton?
+    @IBOutlet weak var infoButton: UIButton?
     
     // Custom classes
     //var unityView = UnityGetGLView()
@@ -20,7 +22,7 @@ class ARBrowserViewController: UIViewController, MenuProtocol {
     var think2016 = Think2016()
     var aboutThink = AboutThink()
     var contactThink = ContactThink()
-    var privacy = Privacy()
+    //var privacy = Privacy()
     var downloadMarker = DownloadMarker()
     
     // Data
@@ -50,7 +52,12 @@ class ARBrowserViewController: UIViewController, MenuProtocol {
         subviews.append(aboutThink)
         subviews.append(contactThink)
         subviews.append(downloadMarker)
-        subviews.append(privacy)
+        //subviews.append(privacy)
+        
+        infoButton?.layer.cornerRadius = 11
+        infoButton?.layer.borderColor = UIColor.white.cgColor
+        infoButton?.layer.borderWidth = 2.0
+        infoButton?.alpha = 0.0
         
         // The very last item in the view controller
         menu.frame = CGRect(x:-2048, y: 46, width: appDelegate.screenWidth, height:appDelegate.screenHeight)
@@ -133,6 +140,17 @@ class ARBrowserViewController: UIViewController, MenuProtocol {
         })
     }
     
+    // MARK: Navbar Info Functionality
+    //
+    // The info action to pop open the overlay on how to play the game when thINK 2016 is present
+    // @param sender : UIButton
+    //      The button triggering this action.
+    //
+    @IBAction func infoAction(sender: UIButton) {
+        
+        print("Hello")
+    }
+    
     //
     // Global function to switch the view with changing the view controller
     //
@@ -184,5 +202,139 @@ class ARBrowserViewController: UIViewController, MenuProtocol {
         if menu.frame.origin.x == 0 {
             menuAction(sender: hamburgerButton!)
         }
+    }
+    
+    // MARK: Print Delegate Callback
+    //
+    // MarkerProtocol callback function that displays a status to the user on their print job
+    //
+    func printJobCallback(flag: Int) {
+        
+        // Build a message based upon the flag
+        var message = "Print job was sent successfully"
+        if flag == 1 {
+            message = "Print job failed, please make sure your printer connects to AirPrint"
+        } else if flag == 2 {
+            message = "Print job was canceled"
+        }
+        
+        // Create an alert view
+        let alert = UIAlertController(title: "Print Status", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: Call thINK - Custom button delegate functions
+    //
+    //
+    //
+    func callthINK(scheme: String) {
+        
+        if let url = URL(string: scheme) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            print("Open \(scheme): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+                print("Open \(scheme): \(success)")
+            }
+        }
+    }
+    
+    // MARK: Open Privacy Statement - Custom button delegate functions
+    //
+    //
+    //
+    /*
+     func openPrivacyStatement(url: String) {
+     
+        if let url = URL(string: url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                      completionHandler: {
+                                        (success) in
+                                        print("Open \(url): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+                print("Open \(url): \(success)")
+            }
+        }
+     }
+    */
+    // MARK: Contact Delegate Functions
+    // MARK: Call thINK - Custom button delegate functions
+    //
+    // Actually performs the action of sending the email
+    //
+    func emailthINK(email: String) {
+        
+        let mailComposeViewController = configuredMailComposeViewController(email: email)
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: alertUserSuccess)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    // MARK: Send Email Functions
+    //
+    //
+    //
+    func configuredMailComposeViewController(email: String) -> MFMailComposeViewController {
+        
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        
+        mailComposerVC.setToRecipients([email])
+        mailComposerVC.setSubject("Contact Submission From thINK iOS App")
+        
+        let emailString = "Contact submission from the thINK iOS Application \n"
+        mailComposerVC.setMessageBody(emailString, isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    //
+    // This function calls back to the view controller to notify of a successful submission
+    //
+    func alertUserSuccess() {
+        
+        let alert = UIAlertController(title: "Email Sent", message: "Your email was sent off to Solimar", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //
+    // This function calls back to the view controller to notify of an issue with submission
+    //
+    func alertUserIssue(message: String) {
+        
+        // Create an alert view
+        let alert = UIAlertController(title: "Contact Submission Issue", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //
+    //
+    //
+    func showSendMailErrorAlert() {
+        
+        let alert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
     }
 }

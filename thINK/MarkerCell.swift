@@ -18,7 +18,7 @@ class MarkerCell: UICollectionViewCell {
         self.backgroundColor = UIColor.lightGray
         
         backgroundImage = UIImageView()
-        backgroundImage!.contentMode = UIViewContentMode.scaleAspectFill
+        backgroundImage!.contentMode = UIViewContentMode.scaleAspectFit
         backgroundImage!.clipsToBounds = true
         backgroundImage!.frame = CGRect(x:2, y: 2, width:(frame.size.width - 4), height:216)
         contentView.addSubview(backgroundImage)

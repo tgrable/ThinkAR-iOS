@@ -12,11 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var partners: PartnerData?
     var screenWidth = 0
     var screenHeight = 0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
+        
+        // Partners
+        partners = PartnerData()
         
         let screenSize: CGRect = UIScreen.main.bounds
         screenWidth = Int(screenSize.width)

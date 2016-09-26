@@ -9,7 +9,7 @@
 import UIKit
 
 
-class Think2016: BaseUIView, UIScrollViewDelegate {
+class Think2016: BaseUIView, UITableViewDelegate {
 
     // MARK: UIView Methods
     //
@@ -23,9 +23,15 @@ class Think2016: BaseUIView, UIScrollViewDelegate {
         self.tag = 11
         self.frame = frame
         self.backgroundColor = UIColor.white
+        
+        let gameLogo: UIImage = UIImage(named: "img-thinkevent-logo")!
+        bannerLogoView = UIImageView(image: gameLogo)
+        bannerLogoView!.contentMode = UIViewContentMode.scaleAspectFill
+        bannerLogoView!.clipsToBounds = true
+        bannerLogoView!.frame = CGRect(x: 20, y: 35, width: 122, height: 139)
+        self.addSubview(bannerLogoView!)
     
-        scrollview = UIScrollView(frame: UIScreen.main.bounds)
-        scrollview!.delegate = self
+
         
     }
     

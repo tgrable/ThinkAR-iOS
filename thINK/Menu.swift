@@ -126,6 +126,7 @@ class Menu: UIView {
         menuContainer.addSubview(doanloadMarker)
         buttonViews.append(doanloadMarker)
         
+        /*
         let doanloadMarkerDivider = UIView(frame: CGRect(x: 0, y: 244, width: 280, height: 1))
         doanloadMarkerDivider.backgroundColor = UIColor.white
         menuContainer.addSubview(doanloadMarkerDivider)
@@ -141,6 +142,7 @@ class Menu: UIView {
         privacyButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
         menuContainer.addSubview(privacyButton)
         buttonViews.append(privacyButton)
+        */
         
         
         // Create a Solimar ImageView

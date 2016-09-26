@@ -15,6 +15,15 @@ class BaseUIView: UIView {
     var markerImagewCells = [UIImage]()
     
     // aboutThink, ContactThink, Privacy
+    var bannerView: UIImageView?
+    var bannerLogoView: UIImageView?
+    var labelHeaderViewOne: UILabel?
+    var labelHeaderViewTwo: UILabel?
+    var bodyCopyView: UITextView?
+    var bottomButtonOne: UIButton?
+    var bottomButtonTwo: UIButton?
+    var bottomLogo: UIImageView?
+    var bottomLabel: UILabel?
     var scrollview: UIScrollView?
     
     var selectedIndex = 0
@@ -72,14 +81,25 @@ class BaseUIView: UIView {
             
             // About thINK
             } else if self.selectedIndex == 1 {
+                
+                bannerView!.frame = CGRect(x: 0, y: 0, width: width, height: 200)
+                bodyCopyView!.frame = CGRect(x: 18, y: 335, width: (width - 36), height: 350)
+                scrollview!.contentSize = CGSize(width: width, height: 750)
               
             // Contact thINK
             } else if self.selectedIndex == 2 {
-              
-            // Privacy
-            } else if self.selectedIndex ==  4 {
                 
-            }
+                labelHeaderViewOne!.frame = CGRect(x: 20, y: 25, width: (width - 40), height: 30)
+                bodyCopyView!.frame = CGRect(x: 18, y: 70, width: (width - 36), height: 85)
+                bottomButtonOne!.frame = CGRect(x: 20, y: 160, width: (width - 40), height: 30)
+                bottomButtonTwo!.frame = CGRect(x: 20, y: 205, width: (width - 40), height: 30)
+                bottomLogo!.frame = CGRect(x: (width / 2 - 60), y: (height - 140), width: 122, height: 36)
+                bottomLabel!.frame = CGRect(x: 20, y: (height - 89), width: (width - 40), height: 22)
+                
+            // Privacy
+            } /*else if self.selectedIndex ==  4 {
+                
+            }*/
         }
     }
 }

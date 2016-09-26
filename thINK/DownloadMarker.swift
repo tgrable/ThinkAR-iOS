@@ -51,12 +51,9 @@ class DownloadMarker: BaseUIView, UICollectionViewDataSource, UICollectionViewDe
         markerImagewCells.append(markerTwoImage)
         
         // UIButtons as collection view items
-        let markerThreeImage: UIImage = UIImage(named:"Marker1")!
+        let markerThreeImage: UIImage = UIImage(named:"Marker3")!
         markerImagewCells.append(markerThreeImage)
         
-        
-        let markerFourImage: UIImage = UIImage(named:"Marker2")!
-        markerImagewCells.append(markerFourImage)
     }
     
     //
