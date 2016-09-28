@@ -126,25 +126,7 @@ class Menu: UIView {
         menuContainer.addSubview(doanloadMarker)
         buttonViews.append(doanloadMarker)
         
-        /*
-        let doanloadMarkerDivider = UIView(frame: CGRect(x: 0, y: 244, width: 280, height: 1))
-        doanloadMarkerDivider.backgroundColor = UIColor.white
-        menuContainer.addSubview(doanloadMarkerDivider)
-        dividerViews.append(doanloadMarkerDivider)
-        
-        let privacyButton = UIButton(frame: CGRect(x: 0, y: 255, width: 280, height: 28))
-        privacyButton.backgroundColor = UIColor.clear
-        privacyButton.setTitle("Privacy", for: [])
-        privacyButton.setTitleColor(UIColor.white, for: [])
-        privacyButton.titleLabel?.textAlignment = NSTextAlignment.center
-        privacyButton.titleLabel!.font =  UIFont(name: "Helvetica Neue", size: 22)
-        privacyButton.tag = 4
-        privacyButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
-        menuContainer.addSubview(privacyButton)
-        buttonViews.append(privacyButton)
-        */
-        
-        
+
         // Create a Solimar ImageView
         let thinkLogoImage: UIImage = UIImage(named: "img-think-logo-white")!
         thinkImageView = UIImageView(image: thinkLogoImage)

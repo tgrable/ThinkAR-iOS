@@ -10,6 +10,11 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    /*
+     sendWinner -> Bool
+     sendText -> String
+    */
 
     var window: UIWindow?
     var partners: PartnerData?
@@ -22,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Partners
         partners = PartnerData()
+        partners!.detectInitialLoad()
         
         let screenSize: CGRect = UIScreen.main.bounds
         screenWidth = Int(screenSize.width)
@@ -52,7 +58,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

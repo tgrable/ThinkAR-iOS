@@ -24,15 +24,22 @@ class Think2016: BaseUIView, UITableViewDelegate {
         self.frame = frame
         self.backgroundColor = UIColor.white
         
+        scrollview = UIScrollView(frame: UIScreen.main.bounds)
+        scrollview!.delegate = self
+        
         let gameLogo: UIImage = UIImage(named: "img-thinkevent-logo")!
         bannerLogoView = UIImageView(image: gameLogo)
         bannerLogoView!.contentMode = UIViewContentMode.scaleAspectFill
         bannerLogoView!.clipsToBounds = true
-        bannerLogoView!.frame = CGRect(x: 20, y: 35, width: 122, height: 139)
-        self.addSubview(bannerLogoView!)
-    
-
+        bannerLogoView!.frame = CGRect(x: 20, y: 35, width: 122, height: 90)
+        scrollview?.addSubview(bannerLogoView!)
         
+        progressView = UIView(frame: CGRect(x: 170, y: 35, width: 147, height: 140))
+        progressView?.backgroundColor = UIColor.gray
+        scrollview?.addSubview(progressView!)
+    
+        scrollview!.contentSize = CGSize(width: frame.size.width, height: frame.size.height)
+        self.addSubview(scrollview!)
     }
     
     //

@@ -56,7 +56,6 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
         subviews.append(aboutThink)
         subviews.append(contactThink)
         subviews.append(downloadMarker)
-        //subviews.append(privacy)
         
         // Custom delegates attached to the this view controller for the specific class
         downloadMarker.printDelegate = self
@@ -209,6 +208,7 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     //
     func menuItemSelected(item: Int) {
         
+        print("Menu item selected: \(item)")
         subViewIndex = item
         animateViews = true
         // Close the menu

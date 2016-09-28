@@ -25,6 +25,7 @@ class BaseUIView: UIView {
     var bottomLogo: UIImageView?
     var bottomLabel: UILabel?
     var scrollview: UIScrollView?
+    var progressView: UIView?
     
     var selectedIndex = 0
 
@@ -78,7 +79,13 @@ class BaseUIView: UIView {
            
             // thINK 2016
             if self.selectedIndex == 0 {
-            
+                
+                if width > 320 {
+                    progressView!.frame = CGRect(x: 170, y: 35, width: 180, height: 180)
+                } else {
+                    progressView!.frame = CGRect(x: 170, y: 35, width: 130, height: 130)
+                }
+                
             // About thINK
             } else if self.selectedIndex == 1 {
                 

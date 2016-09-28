@@ -6,21 +6,16 @@
 //  Copyright © 2016 Trekk Design. All rights reserved.
 //
 
+import UIKit
+import CoreData
 import Foundation
 
-class Partner {
+class Partner: NSManagedObject {
     
-    var name: String = ""
-    var scanned: Bool = false
-    var boothNumber: Int = 0
-    var information: String = ""
+    @NSManaged var name: String?
+    @NSManaged var scanned: NSNumber?
+    @NSManaged var boothNumber: NSNumber?
+    @NSManaged var information: String?
+    @NSManaged var markerImage: String?
     
-    init(partnerName: String, booth: Int, info: String) {
-    
-        name = partnerName
-        scanned = false
-        boothNumber = booth
-        information = info
-        
-    }
 }
