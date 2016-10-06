@@ -12,9 +12,8 @@
 protocol CustomButtonProtocol: class {
 
     // Call thINK
-    func callthINK(scheme: String)
+    func contactthINK(url: String)
     // Email thINK
     func emailthINK(email: String)
-    // Open Privacy Statement
-    //func openPrivacyStatement(url: String)
+
 }

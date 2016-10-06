@@ -35,34 +35,25 @@ class ContactThink: BaseUIView, UIScrollViewDelegate {
         labelHeaderViewOne!.font =  UIFont(name: "Helvetica Neue", size: 26)
         scrollview!.addSubview(labelHeaderViewOne!)
         
-        bodyCopyView = UITextView(frame: CGRect(x: 18, y: 70, width: (frame.size.width - 80), height: 85))
+        bodyCopyView = UITextView(frame: CGRect(x: 18, y: 70, width: (frame.size.width - 80), height: 300))
         bodyCopyView!.backgroundColor = UIColor.clear
         bodyCopyView!.isEditable = false
+        bodyCopyView!.textColor = UIColor(red: 68.0/255.0, green: 68.0/255.0, blue: 68.0/255.0, alpha: 1.0)
         bodyCopyView!.isScrollEnabled = false
         bodyCopyView!.font =  UIFont(name: "Helvetica Neue", size: 18)
         bodyCopyView!.textAlignment = NSTextAlignment.center
-        bodyCopyView!.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non blandit orci, id condimentum lacus."
+        bodyCopyView!.text = "The thINK Executive Director and Board Members welcome your input, questions, and comments. Would you like to share your ideas, opinions, and best practices with the community? Do you have suggestions for a blog post, educational session, or community resource that will help you grow your business? Have a question about how you can get involved? \n\n Please tap the button below to get in contact with us."
         scrollview!.addSubview(bodyCopyView!)
         
-        bottomButtonOne = UIButton(frame: CGRect(x: 20, y: 160, width: frame.size.width, height: 30))
+        bottomButtonOne = UIButton(frame: CGRect(x: 20, y: 375, width: frame.size.width, height: 30))
         bottomButtonOne!.backgroundColor =  UIColor.clear
-        bottomButtonOne!.setTitle("555-555-5555", for: [])
+        bottomButtonOne!.setTitle("Contact Us", for: [])
         bottomButtonOne!.setTitleColor(UIColor(red: 64.0/255.0, green: 154.0/255.0, blue: 158.0/255.0, alpha: 1.0), for: [])
         bottomButtonOne!.titleLabel?.textAlignment = NSTextAlignment.center
         bottomButtonOne!.titleLabel!.font =  UIFont(name: "Helvetica Neue", size: 22)
         bottomButtonOne!.tag = 4
-        bottomButtonOne!.addTarget(self, action: #selector(callButtonPressed), for: .touchUpInside)
+        bottomButtonOne!.addTarget(self, action: #selector(contactUsButtonPressed), for: .touchUpInside)
         scrollview!.addSubview(bottomButtonOne!)
-        
-        bottomButtonTwo = UIButton(frame: CGRect(x: 20, y: 205, width: frame.size.width, height: 30))
-        bottomButtonTwo!.backgroundColor =  UIColor.clear
-        bottomButtonTwo!.setTitle("email@think.com", for: [])
-        bottomButtonTwo!.setTitleColor(UIColor(red: 64.0/255.0, green: 154.0/255.0, blue: 158.0/255.0, alpha: 1.0), for: [])
-        bottomButtonTwo!.titleLabel?.textAlignment = NSTextAlignment.center
-        bottomButtonTwo!.titleLabel!.font =  UIFont(name: "Helvetica Neue", size: 22)
-        bottomButtonTwo!.tag = 4
-        bottomButtonTwo!.addTarget(self, action: #selector(emailButtonPressed), for: .touchUpInside)
-        scrollview!.addSubview(bottomButtonTwo!)
     
         
         let blackLogo: UIImage = UIImage(named: "img-think-logo-black")!
@@ -94,16 +85,8 @@ class ContactThink: BaseUIView, UIScrollViewDelegate {
     //
     //
     //
-    func callButtonPressed(sender: UIButton!) {
+    func contactUsButtonPressed(sender: UIButton!) {
         
-        customContactDelegate?.callthINK(scheme: "tel://1-555-555-5555")
-    }
-    
-    //
-    //
-    //
-    func emailButtonPressed(sender: UIButton!) {
-        
-        customContactDelegate?.emailthINK(email: "meaton@trekk.com")
+        customContactDelegate?.contactthINK(url: "http://thinkconference.thinkforum.com/contact")
     }
 }

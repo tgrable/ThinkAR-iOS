@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-thinkapp-bkgrd.png" translatesAutoresizingMaskIntoConstraints="NO" id="8mX-DZ-fjC"/>
@@ -36,8 +36,22 @@
                                             <action selector="menuActionWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WK9-8J-jdP"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PH8-Ga-rYW" userLabel="InfoButton">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="22" id="gGg-tG-h1D"/>
+                                            <constraint firstAttribute="height" constant="22" id="uuZ-KP-W56"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="infoActionWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gAc-wl-UzN"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25098039215686274" green="0.60392156862745094" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="PH8-Ga-rYW" firstAttribute="top" secondItem="Pk9-ge-OtW" secondAttribute="top" constant="12" id="407-L6-5hg"/>
+                                    <constraint firstAttribute="trailing" secondItem="PH8-Ga-rYW" secondAttribute="trailing" constant="20" id="nTA-Hu-GJn"/>
+                                </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Explore augmented reality experiences in thINK events and in thINK communications.  Look for the thINK AR icon." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bl-gJ-Dgh" userLabel="Greeting" customClass="GreetingView" customModule="thINK" customModuleProvider="target">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -87,6 +101,7 @@
                         <outlet property="goButton" destination="5kT-hp-pp8" id="wBt-O6-1Yc"/>
                         <outlet property="greeting" destination="9Bl-gJ-Dgh" id="1qM-eb-f6U"/>
                         <outlet property="hamburgerButton" destination="eya-pZ-TJl" id="ip9-EU-IT4"/>
+                        <outlet property="infoButton" destination="PH8-Ga-rYW" id="frU-Hg-Qvk"/>
                         <outlet property="logoImage" destination="LF1-Re-eZo" id="wfl-Js-vC4"/>
                     </connections>
                 </viewController>
@@ -103,42 +118,52 @@
                         <viewControllerLayoutGuide type="bottom" id="6bw-dQ-M2Q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Iln-Yk-obj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3s-hr-M9R">
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EoY-g9-fCd">
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOx-va-aMW" userLabel="Hamburger">
-                                                <frame key="frameInset" minX="20" minY="8" width="40" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" backgroundImage="hamburger.png"/>
-                                                <connections>
-                                                    <action selector="menuActionWithSender:" destination="iub-30-MQq" eventType="touchUpInside" id="3XW-Vz-uWX"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.25490196078431371" green="0.60392156862745094" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="68w-Pl-0di"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OPo-SG-4yt" userLabel="UnityParentView">
+                                <frame key="frameInset" width="414" height="736"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EoY-g9-fCd" userLabel="NavBar">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOx-va-aMW" userLabel="Hamburger">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="p0G-a8-ltJ"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="hamburger.png"/>
+                                        <connections>
+                                            <action selector="menuActionWithSender:" destination="iub-30-MQq" eventType="touchUpInside" id="3XW-Vz-uWX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSN-l0-uUl" userLabel="InfoButton">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="f8x-qn-PaI"/>
+                                            <constraint firstAttribute="width" constant="22" id="vAd-I1-rt6"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="infoActionWithSender:" destination="iub-30-MQq" eventType="touchUpInside" id="aCn-Wo-XFy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.25490196078431371" green="0.60392156862745094" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="EoY-g9-fCd" firstAttribute="leading" secondItem="P3s-hr-M9R" secondAttribute="leading" id="Fsf-hh-ns1"/>
-                                    <constraint firstItem="EoY-g9-fCd" firstAttribute="top" secondItem="P3s-hr-M9R" secondAttribute="top" id="cW2-TY-l21"/>
-                                    <constraint firstAttribute="trailing" secondItem="EoY-g9-fCd" secondAttribute="trailing" id="cqp-Uu-fTO"/>
+                                    <constraint firstAttribute="trailing" secondItem="HSN-l0-uUl" secondAttribute="trailing" constant="20" id="4jp-EG-RNY"/>
+                                    <constraint firstAttribute="height" constant="45" id="68w-Pl-0di"/>
+                                    <constraint firstItem="UOx-va-aMW" firstAttribute="leading" secondItem="EoY-g9-fCd" secondAttribute="leading" constant="20" id="Hwm-1U-bbO"/>
+                                    <constraint firstItem="HSN-l0-uUl" firstAttribute="centerY" secondItem="UOx-va-aMW" secondAttribute="centerY" id="LpX-MM-tpf"/>
+                                    <constraint firstItem="UOx-va-aMW" firstAttribute="top" secondItem="EoY-g9-fCd" secondAttribute="topMargin" id="ign-Xo-HVH"/>
+                                    <constraint firstItem="HSN-l0-uUl" firstAttribute="top" secondItem="EoY-g9-fCd" secondAttribute="top" constant="12" id="yHw-W3-VkW"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="P3s-hr-M9R" secondAttribute="trailing" id="4up-Rt-2LI"/>
-                            <constraint firstItem="6bw-dQ-M2Q" firstAttribute="top" secondItem="P3s-hr-M9R" secondAttribute="bottom" id="IhY-bS-TVY"/>
-                            <constraint firstItem="P3s-hr-M9R" firstAttribute="top" secondItem="Iln-Yk-obj" secondAttribute="top" id="MHE-LF-fEe"/>
-                            <constraint firstItem="P3s-hr-M9R" firstAttribute="leading" secondItem="Iln-Yk-obj" secondAttribute="leading" id="zyp-f6-WpD"/>
+                            <constraint firstAttribute="trailing" secondItem="EoY-g9-fCd" secondAttribute="trailing" id="4QQ-j4-0tn"/>
+                            <constraint firstItem="EoY-g9-fCd" firstAttribute="leading" secondItem="Iln-Yk-obj" secondAttribute="leading" id="Zrs-yk-5a1"/>
+                            <constraint firstItem="EoY-g9-fCd" firstAttribute="top" secondItem="RYd-vc-t9W" secondAttribute="bottom" id="wbE-5F-bka"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -146,7 +171,8 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="hamburgerButton" destination="UOx-va-aMW" id="72J-W9-G8O"/>
-                        <outlet property="parentUnityView" destination="P3s-hr-M9R" id="Dva-OJ-ldw"/>
+                        <outlet property="infoButton" destination="HSN-l0-uUl" id="OFe-2W-vLi"/>
+                        <outlet property="parentUnityView" destination="OPo-SG-4yt" id="oaE-pa-9CT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YaO-bU-eU8" userLabel="First Responder" sceneMemberID="firstResponder"/>

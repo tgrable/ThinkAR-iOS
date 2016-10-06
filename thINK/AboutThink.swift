@@ -40,26 +40,28 @@ class AboutThink: BaseUIView, UIScrollViewDelegate {
         
         labelHeaderViewOne = UILabel(frame: CGRect(x: 20, y: 245, width: 280, height: 30))
         labelHeaderViewOne!.textAlignment = NSTextAlignment.left
-        labelHeaderViewOne!.text = "Headline Placeholder"
+        labelHeaderViewOne!.text = "About thINK"
         labelHeaderViewOne!.textColor = UIColor(red: 64.0/255.0, green: 154.0/255.0, blue: 158.0/255.0, alpha: 1.0)
         labelHeaderViewOne!.font =  UIFont(name: "Helvetica Neue", size: 26)
         scrollview!.addSubview(labelHeaderViewOne!)
         
         labelHeaderViewTwo = UILabel(frame: CGRect(x: 20, y: 285, width: 280, height: 30))
         labelHeaderViewTwo!.textAlignment = NSTextAlignment.left
-        labelHeaderViewTwo!.text = "Subhead Placeholder"
+        labelHeaderViewTwo!.text = "The Power of Community"
         labelHeaderViewTwo!.textColor = UIColor(red: 64.0/255.0, green: 154.0/255.0, blue: 158.0/255.0, alpha: 1.0)
         labelHeaderViewTwo!.font =  UIFont(name: "Helvetica Neue", size: 22)
         scrollview!.addSubview(labelHeaderViewTwo!)
         
-        bodyCopyView = UITextView(frame: CGRect(x: 18, y: 335, width: (frame.size.width - 40), height: 350))
+        bodyCopyView = UITextView(frame: CGRect(x: 18, y: 335, width: (frame.size.width - 40), height: 500))
         bodyCopyView!.isEditable = false
+        bodyCopyView!.textColor = UIColor(red: 68.0/255.0, green: 68.0/255.0, blue: 68.0/255.0, alpha: 1.0)
         bodyCopyView!.isScrollEnabled = false
         bodyCopyView!.font =  UIFont(name: "Helvetica Neue", size: 18)
-        bodyCopyView!.text = "Aliquam sed augue tincidunt, suscipit velit nec, malesuada mauris. Phasellus ac lacus est. Nam eu erat a nibh sagittis venenatis eget sed elit. Aliquam tincidunt nisi vel augue gravida, vel lacinia nisl varius. Praesent pretium varius nulla atviverra."
+        let encodedString = "thINK is an independent community of Canon Solutions America Production Print customers, solution partners, and print industry experts. Led by some of the most successful inkjet service providers in the country, it provides a forum for members to network, gain knowledge, discuss common challenges, and share best practices. \n\n The inaugural event of the community of Canon Solutions America Production Print inkjet customers drew more than 350 attendees, making it the largest user group event for inkjet production printing. thINK 2016 promises to be even bigger and better – with expanded conference sessions and projected attendance of more than 400."
+        bodyCopyView!.text = encodedString
         scrollview!.addSubview(bodyCopyView!)
         
-        scrollview!.contentSize = CGSize(width: frame.size.width, height: 750)
+        scrollview!.contentSize = CGSize(width: frame.size.width, height: 900)
         self.addSubview(scrollview!)
         
     }

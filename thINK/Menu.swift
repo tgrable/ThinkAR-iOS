@@ -152,6 +152,9 @@ class Menu: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //
+    //
+    //
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
@@ -211,7 +214,6 @@ class Menu: UIView {
         }
         
         
-       
         thinkImageView.frame = CGRect(x: ((insideWidth - 245) / 2),y:  (height - 200), width: 245, height: 60)
         bottomLabel.frame = CGRect(x: ((insideWidth - 245) / 2), y: (height - 100), width: 245, height: 15)
         // Set the content size height for the scrollview

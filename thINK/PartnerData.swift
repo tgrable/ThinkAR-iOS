@@ -13,25 +13,16 @@ class PartnerData: NSObject {
     
     // Partner data and UserDefaults
     var managedObjectContext: NSManagedObjectContext
-    var partnerNames: [String] = ["APPVION", "ARCIS", "BCC SOFTWARE", "CMC", "CRAWFORD TECHNOLOGIES", "DALIM",
-                                  "DOMTAR", "EMT", "FINCH", "GEORGIA PACIFIC", "GEP EHRET", "GLATFELTER",
-                                  "GMC", "INTERNATIONAL PAPER", "IRONSIDES", "LINDENMEYR MUNROE", "MAC PAPERS", "MBO AMERICA",
-                                  "MIDLAND PAPER", "MITSUBISHI IMAGING", "MONDI", "MULLER MARTINI", "PRINOVA, INC.", "ROLLAND",
-                                  "SEFAS", "SPIRAL", "STANDARD", "TECNAU", "THARSTERN", "ULTIMATE",
-                                  "VERSO", "VIDEK", "Extra Set #1", "Extra Set #2", "Extra Set #3", "TREKK"]
-    var partnerMakers: [String] = ["", "", "", "", "", "",
-                                   "", "", "", "", "", "",
-                                   "", "", "", "", "", "",
-                                   "", "", "", "", "", "",
-                                   "", "", "", "", "", "",
-                                   "", "", "", "", "", ""]
+    
+    var partnerNames: [String] = ["Appvion", "Arcis", "BCC Software", "CMC", "Crawford Technologies", "Dalim", "Domtar", "EMT", "Finch", "Georgia Pacific", "GEP", "Glatfelter", "GMC", "International Paper", "Ironsides", "Lindenmeyr", "Mac Papers", "MBO America", "Midland Paper", "Mitsubishi Imaging", "Mondi", "Muller Martini", "Prinova, Inc.", "Rolland", "Sefas", "Spiral", "Standard", "Tecnau", "Tharsten", "TREKK", "Ultimate", "Verso", "Videk"]
+    
+    var makerNames: [String] = ["thINK2016-postcards", "thINK2016-postcards2", "thINK2016-postcards3", "thINK2016-postcards4", "thINK2016-postcards5", "thINK2016-postcards6", "thINK2016-postcards7", "thINK2016-postcards8", "thINK2016-postcards9", "thINK2016-postcards10", "thINK2016-postcards11", "thINK2016-postcards12", "thINK2016-postcards13", "thINK2016-postcards14", "thINK2016-postcards15", "thINK2016-postcards16", "thINK2016-postcards17", "thINK2016-postcards18", "thINK2016-postcards19", "thINK2016-postcards20", "thINK2016-postcards21", "thINK2016-postcards22", "thINK2016-postcards23", "thINK2016-postcards24", "thINK2016-postcards25", "thINK2016-postcards26", "thINK2016-postcards27", "thINK2016-postcards28", "thINK2016-postcards29", "thINK2016-postcards37", "thINK2016-postcards30", "thINK2016-postcards31", "thINK2016-postcards32"]
     
     
     //
     // Constructor to load the partner data if not persisted
     //
     override init() {
-    
         
         // Initialize the core data stack before the super.init call
         // This resource is the same name as your xcdatamodeld contained in your project.
@@ -60,63 +51,60 @@ class PartnerData: NSObject {
 
     }
     
-    func detectInitialLoad() {
+    func detectInitialLoad(completion: (_ result: Bool) -> Void) {
         
         // Detect if there is data saved already.
         // If there is not data saved, load it
-        if let p = getPartnerByName(name: "TREKK").name {
-            print("Partner user defaults have persisted between usage of app. With name: \(p)")
+        if getPartnerByName(name: "TREKK").characters.count > 0 {
+            print("Partner user defaults have persisted between usage of app. With name: TREKK")
+            completion(true)
         } else {
             print("Partner data needs to be loaded or has been lost")
             
             var index = 0
+            
             for name in partnerNames {
                 
-                if saveNewPartnerObject(name: name, scanned: 0, boothNumber: index,  information: "", makerImage: partnerMakers[index]) {
-                    print("Successfully saved a new partner with the name: \(name)")
+                if saveNewPartnerObject(name: name, scanned: 0, boothNumber: index,  information: "", makerImage: makerNames[index]) {
+                    print("Successfully saved a new partner with the name: \(name) at index: \(index)")
                 } else {
                     print("Failed to save a new partner with the name: \(name)")
                 }
+                print("Index: \(index)")
                 index += 1
+                if partnerNames.count == index {
+                    completion(true)
+                    break
+                }
             }
         }
     }
     
-    
     //
     //
     //
-    func updatePartnerObject(p: Partner) -> Bool {
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Partner", in: managedObjectContext)
-        var partnerObject = NSManagedObject(entity: entity!, insertInto: managedObjectContext) as! Partner
+    func updatePartnerObject(imageTargetName: String) -> Bool {
         
         let partnerFetch = NSFetchRequest<Partner>(entityName: "Partner")
-        let predicate = NSPredicate(format: "%K == %@", "name", p.name!)
-        partnerFetch.predicate = predicate
+        let predicate = NSPredicate(format: "%K == %@", "markerImage", imageTargetName)
+        let nonNilPredicate = NSPredicate(format: "%K != nil", "name")
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, nonNilPredicate])
+        partnerFetch.predicate = compoundPredicate
         
         let alphaDescriptor = NSSortDescriptor(key: "name", ascending: true)
         partnerFetch.sortDescriptors = [alphaDescriptor]
         
         do {
             let partnerResult = try self.managedObjectContext.fetch(partnerFetch as! NSFetchRequest<NSFetchRequestResult>) as! [Partner]
-            print ("Count of partnerResult \(partnerResult.count)")
             
             if partnerResult.count == 0 {
-                print ("No objects found")
                 return false
             } else if partnerResult.count == 1 {
-                print ("One object found")
-                partnerObject =  partnerResult[0]
-                partnerObject.name = p.name
-                partnerObject.scanned = p.scanned
-                partnerObject.boothNumber = p.boothNumber
-                partnerObject.information = p.information
-                partnerObject.markerImage = p.markerImage
+                let partnerObject =  partnerResult[0]
+                partnerObject.scanned = 1
                 
                 do {
                     try partnerObject.managedObjectContext?.save()
-                    
                     return true
                 } catch {
                     fatalError("Failure to save context: \(error)")
@@ -158,37 +146,31 @@ class PartnerData: NSObject {
     //
     //
     //
-    func getPartnerByName(name: String) -> Partner {
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Partner", in: managedObjectContext)
-        var partnerObject = NSManagedObject(entity: entity!, insertInto: managedObjectContext) as! Partner
+    func getPartnerByName(name: String) -> String {
         
         let partnerFetch = NSFetchRequest<Partner>(entityName: "Partner")
         let predicate = NSPredicate(format: "%K == %@", "name", name)
-        partnerFetch.predicate = predicate
+        let nonNilPredicate = NSPredicate(format: "%K != nil", "name")
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, nonNilPredicate])
+        partnerFetch.predicate = compoundPredicate
     
         let alphaDescriptor = NSSortDescriptor(key: "name", ascending: true)
         partnerFetch.sortDescriptors = [alphaDescriptor]
         
         do {
             let partnerResult = try self.managedObjectContext.fetch(partnerFetch as! NSFetchRequest<NSFetchRequestResult>) as! [Partner]
-            print ("Count of partnerResult \(partnerResult.count)")
             
             if partnerResult.count == 0 {
-                print ("No objects found")
-                return partnerObject
+                return ""
             } else if partnerResult.count == 1 {
-                print ("One object found")
-                partnerObject =  partnerResult[0]
-                return partnerObject
+                return partnerResult[0].name!
             } else {
-                print ("More than one object found")
             }
         } catch {
             let fetchError = error as NSError
             print(fetchError)
         }
-        return partnerObject
+        return ""
     }
     
     //
@@ -196,16 +178,56 @@ class PartnerData: NSObject {
     //
     func getAllPartnerObjects() -> [Partner] {
         
-        var returnedPartners = [Partner]()
+        var returnedNonNilPartners = [Partner]()
         let moc = managedObjectContext
         let partnerFetch = NSFetchRequest<Partner>(entityName: "Partner")
+        let predicate = NSPredicate(format: "%K != nil", "name")
+        partnerFetch.predicate = predicate
+        
+        let alphaDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        partnerFetch.sortDescriptors = [alphaDescriptor]
         
         do {
-            returnedPartners = try moc.fetch(partnerFetch as! NSFetchRequest<NSFetchRequestResult>) as! [Partner]
+            let returnedPartners = try moc.fetch(partnerFetch as! NSFetchRequest<NSFetchRequestResult>) as! [Partner]
+            
+            for part in returnedPartners {
+                if part.name != nil {
+                    returnedNonNilPartners.append(part)
+                }
+            }
+            
             return returnedPartners
         } catch {
             fatalError("Failed to fetch Partners: \(error)")
         }
-        return returnedPartners
+        return returnedNonNilPartners
+    }
+    
+    //
+    //
+    //
+    func getListOfScannedPartners() -> [String] {
+        
+        var scannedPartners = [String]()
+        let partnerFetch = NSFetchRequest<Partner>(entityName: "Partner")
+        let predicate = NSPredicate(format: "%K == %d", "scanned", 1)
+        let nonNilPredicate = NSPredicate(format: "%K != nil", "name")
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, nonNilPredicate])
+        partnerFetch.predicate = compoundPredicate
+        
+        let alphaDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        partnerFetch.sortDescriptors = [alphaDescriptor]
+        
+        do {
+            let partnerResult = try self.managedObjectContext.fetch(partnerFetch as! NSFetchRequest<NSFetchRequestResult>) as! [Partner]
+            for p in partnerResult {
+                scannedPartners.append(p.markerImage!)
+            }
+
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+        return scannedPartners
     }
 }

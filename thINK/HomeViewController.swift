@@ -22,16 +22,12 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     // Custom classes
     var menu = Menu()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var think2016 = Think2016()
-    var aboutThink = AboutThink()
-    var contactThink = ContactThink()
-    //var privacy = Privacy()
-    var downloadMarker = DownloadMarker()
     
     // Data
     var subViewIndex = 0
     var animateViews = false
     var subviewPresent = false
+    var infoPressed = false
     var subviews = [BaseUIView]()
     
     // Now a property and not a function
@@ -43,6 +39,10 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Make sure Unity sound does not fire up in the background
+        appDelegate.soundOn(flag: false)
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         // Background and in-focus notifications
@@ -52,22 +52,19 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
         
         // Add all view classes to the subviews array
         // The order here is important
-        subviews.append(think2016)
-        subviews.append(aboutThink)
-        subviews.append(contactThink)
-        subviews.append(downloadMarker)
+        subviews.append(appDelegate.think2016!)
+        subviews.append(appDelegate.aboutThink!)
+        subviews.append(appDelegate.contactThink!)
+        subviews.append(appDelegate.downloadMarker!)
         
         // Custom delegates attached to the this view controller for the specific class
-        downloadMarker.printDelegate = self
-        contactThink.customContactDelegate = self
-        
-        // Custom delegates attached to the this view controller for the specific class
-        //downloadMarker.printDelegate = self
+        appDelegate.downloadMarker?.printDelegate = self
+        appDelegate.contactThink?.customContactDelegate = self
 
-        infoButton?.layer.cornerRadius = 11
-        infoButton?.layer.borderColor = UIColor.white.cgColor
-        infoButton?.layer.borderWidth = 2.0
         infoButton?.alpha = 0.0
+        let info = UIImage(named: "info") as UIImage?
+        infoButton?.setImage(info, for: .normal)
+        infoButton?.touchAreaEdgeInsets = UIEdgeInsetsMake(-10, -10, -10, -10)
         
         // The very last item in the view controller
         menu.frame = CGRect(x:-2048, y: 46, width: appDelegate.screenWidth, height:appDelegate.screenHeight)
@@ -100,7 +97,6 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     //
     func appMovedToBackground() {
         
-        print("App moved to background!")
         // Clean up anything before the app goes into the background
     }
     
@@ -110,8 +106,6 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     //
     func appMovedToFocus() {
         
-        print("App moved to focus!")
-        
     }
     
     // MARK: Go Action
@@ -119,6 +113,9 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     // Takes a user to the AR Browser
     //
     @IBAction func goAction(sender: UIButton!) {
+        
+        // Make sure Unity sound does fire up in the background
+        appDelegate.soundOn(flag: true)
         
         self.performSegue(withIdentifier: "HomeToARBrowser", sender: self)
     }
@@ -139,6 +136,8 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
         if menu.frame.origin.x == 0 {
             // Make sure that if closing the menu that the x variable is over 100 pixels negative
             x = Int(width - (width * 2.5))
+        } else {
+            setInfoAsClosed()
         }
         
         // Bring menu to front of view stack
@@ -167,7 +166,17 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     //
     @IBAction func infoAction(sender: UIButton) {
         
-        print("Hello")
+        if !infoPressed {
+            let close = UIImage(named: "x-mark") as UIImage?
+            infoButton?.setImage(close, for: .normal)
+            infoPressed = true
+            appDelegate.think2016?.animateHowToPlay(yVal:Int(0.0))
+        } else {
+            let info = UIImage(named: "info") as UIImage?
+            infoButton?.setImage(info, for: .normal)
+            infoPressed = false
+            appDelegate.think2016?.animateHowToPlay(yVal:Int(appDelegate.screenHeight))
+        }
     }
     
     //
@@ -176,6 +185,9 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     func switchViews() {
         
         if subViewIndex == 10 {
+            // Make sure Unity sound does fire up in the background
+            appDelegate.soundOn(flag: true)
+            setInfoAsClosed()
             // Moving out to the AR Browser
             self.performSegue(withIdentifier: "HomeToARBrowser", sender: self)
         } else  {
@@ -190,15 +202,37 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
                 }
             }
             
-            // Any other subview inheriting from BaseUIView
             if subViewIndex < subviews.count {
+                
                 let selectedSubview: BaseUIView = subviews[subViewIndex]
                 selectedSubview.setIndex(index: subViewIndex)
                 selectedSubview.reflowLayout(width: self.view.frame.size.width, height: self.view.frame.size.height)
+                
+                // Reload the partner data
+                if subViewIndex == 0 {
+                    appDelegate.reloadPartnerData()
+                    infoButton?.alpha = 1.0
+                    appDelegate.think2016?.addProgressView()
+                } else {
+                    setInfoAsClosed()
+                }
+                
                 self.view.addSubview(selectedSubview)
                 subviewPresent = true
-            }
+            } 
         }
+    }
+    
+    //
+    // Function to hide the close button in multiple places
+    //
+    func setInfoAsClosed() {
+        
+        infoButton?.alpha = 0.0
+        let info = UIImage(named: "info") as UIImage?
+        infoButton?.setImage(info, for: .normal)
+        infoPressed = true
+        appDelegate.think2016?.animateHowToPlay(yVal:Int(appDelegate.screenHeight))
     }
     
     // MARK: Menu delegate callback
@@ -208,7 +242,6 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     //
     func menuItemSelected(item: Int) {
         
-        print("Menu item selected: \(item)")
         subViewIndex = item
         animateViews = true
         // Close the menu
@@ -244,32 +277,11 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     }
 
     
-    // MARK: Call thINK - Custom button delegate functions
+    // MARK: Contact thINK - Custom button delegate functions
     //
+    // Contact thINK URL Callback
     //
-    //
-    func callthINK(scheme: String) {
-        
-        if let url = URL(string: scheme) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:],
-                                          completionHandler: {
-                                            (success) in
-                                            print("Open \(scheme): \(success)")
-                })
-            } else {
-                let success = UIApplication.shared.openURL(url)
-                print("Open \(scheme): \(success)")
-            }
-        }
-    }
-    
-    // MARK: Open Privacy Statement - Custom button delegate functions
-    //
-    //
-    //
-    /*
-    func openPrivacyStatement(url: String) {
+    func contactthINK(url: String) {
         
         if let url = URL(string: url) {
             if #available(iOS 10, *) {
@@ -283,10 +295,9 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
                 print("Open \(url): \(success)")
             }
         }
-    }*/
+    }
     
-    // MARK: Contact Delegate Functions
-    // MARK: Call thINK - Custom button delegate functions
+    // MARK: Email thINK - Custom button delegate functions
     //
     // Actually performs the action of sending the email
     //
@@ -302,7 +313,7 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     
     // MARK: Send Email Functions
     //
-    //
+    // Compose an email to be sent using the default email client
     //
     func configuredMailComposeViewController(email: String) -> MFMailComposeViewController {
         
@@ -341,7 +352,7 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
     }
     
     //
-    //
+    // Show an error if the email could not be sent
     //
     func showSendMailErrorAlert() {
         
@@ -351,7 +362,9 @@ class HomeViewController: UIViewController, MenuProtocol, MarkerProtocol, Custom
         
     }
     
+    //
     // MARK: MFMailComposeViewControllerDelegate Method
+    //
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
         controller.dismiss(animated: true, completion: nil)

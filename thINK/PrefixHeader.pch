@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  thINK
+//
+//  Created by Trekk mini-1 on 9/28/16.
+//  Copyright © 2016 Trekk Design. All rights reserved.
+//
+
+//
+// Prefix header
+//
+
+#ifndef PrefixHeader_h
+#define PrefixHeader_h
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
+
+#include "Preprocessor.h"
+#include "UnityTrampolineConfigure.h"
+#include "UnityInterface.h"
+
+#ifndef __OBJC__
+#if USE_IL2CPP_PCH
+    #include "il2cpp_precompiled_header.h"
+#endif
+#endif
+
+#ifndef TARGET_IPHONE_SIMULATOR
+    #define TARGET_IPHONE_SIMULATOR 0
+#endif
+
+#define printf_console printf
+#endif /* PrefixHeader_h */

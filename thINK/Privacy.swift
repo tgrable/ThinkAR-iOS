@@ -71,6 +71,5 @@ class Privacy: BaseUIView, UIScrollViewDelegate {
     //
     func privacyButtonPressed(sender: UIButton!) {
         
-        //customContactDelegate?.openPrivacyStatement("": String)
     }
 }

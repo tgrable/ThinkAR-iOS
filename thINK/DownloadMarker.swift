@@ -69,8 +69,6 @@ class DownloadMarker: BaseUIView, UICollectionViewDataSource, UICollectionViewDe
     //
     func printMarkerImage(markerIndex: Int) {
         
-        print("HERE")
-        
         let selectedMarkerImage = markerImagewCells[markerIndex]
         let printInfo = UIPrintInfo(dictionary:nil)
         printInfo.outputType = UIPrintInfoOutputType.general
@@ -88,11 +86,9 @@ class DownloadMarker: BaseUIView, UICollectionViewDataSource, UICollectionViewDe
             if success {
                 // Printed successfully
                 // Remove file here ...
-                print("Success")
                 self.printDelegate!.printJobCallback(flag: 0)
             } else {
                 // Printing failed, report error ...
-                print("Failed")
                 if let err = error {
                     print("Error \(err.localizedDescription)")
                     self.printDelegate!.printJobCallback(flag: 1)
@@ -120,17 +116,23 @@ class DownloadMarker: BaseUIView, UICollectionViewDataSource, UICollectionViewDe
         return cell    // Create UICollectionViewCell
     }
     
-    
+    //
+    //
+    //
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return markerImagewCells.count
     }
     
+    //
+    //
+    //
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1  // Number of section
     }
     
-    
-    
+    //
+    //
+    //
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath as IndexPath, animated: false)
         // Select operation
@@ -139,6 +141,9 @@ class DownloadMarker: BaseUIView, UICollectionViewDataSource, UICollectionViewDe
     
     
     // MARK: UICollectionViewDelegateFlowLayout
+    //
+    //
+    //
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: 290, height: 220) // The size of one cell

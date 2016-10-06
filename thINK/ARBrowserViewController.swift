@@ -16,20 +16,27 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
     @IBOutlet weak var infoButton: UIButton?
     
     // Custom classes
-    //var unityView = UnityGetGLView()
+    var unityView = UnityGetGLView()
     var menu = Menu()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var think2016 = Think2016()
-    var aboutThink = AboutThink()
-    var contactThink = ContactThink()
-    //var privacy = Privacy()
-    var downloadMarker = DownloadMarker()
     
     // Data
     var subViewIndex = 0
     var animateViews = false
     var subviewPresent = false
+    var infoPressed = false
     var subviews = [BaseUIView]()
+    var imageMarkers = [String]()
+    
+    // Timer
+    var timer = Timer()
+    var timePaused = true
+    
+    // Winner Views
+    var winnerBackgroundView: UIView?
+    var winnerCloseButton: UIButton?
+    var winnerImageView: UIImageView?
+    var winnerLabel: UILabel?
     
     // Now a property and not a function
     override var prefersStatusBarHidden: Bool {
@@ -48,21 +55,64 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
         
         // Add all view classes to the subviews array
         // The order here is important
-        subviews.append(think2016)
-        subviews.append(aboutThink)
-        subviews.append(contactThink)
-        subviews.append(downloadMarker)
-        //subviews.append(privacy)
+        subviews.append(appDelegate.think2016!)
+        subviews.append(appDelegate.aboutThink!)
+        subviews.append(appDelegate.contactThink!)
+        subviews.append(appDelegate.downloadMarker!)
         
-        infoButton?.layer.cornerRadius = 11
-        infoButton?.layer.borderColor = UIColor.white.cgColor
-        infoButton?.layer.borderWidth = 2.0
+        // Custom delegates attached to the this view controller for the specific class
+        appDelegate.downloadMarker?.printDelegate = self
+        appDelegate.contactThink?.customContactDelegate = self
+        
         infoButton?.alpha = 0.0
+        let info = UIImage(named: "info") as UIImage?
+        infoButton?.setImage(info, for: .normal)
+        infoButton?.touchAreaEdgeInsets = UIEdgeInsetsMake(-10, -10, -10, -10)
+        
+        
+        unityView?.frame = CGRect(x:0, y: 0, width: appDelegate.screenWidth, height: appDelegate.screenHeight)
+        unityView?.tag = 20
+        parentUnityView!.addSubview(unityView!)
+        unityView?.translatesAutoresizingMaskIntoConstraints = false
         
         // The very last item in the view controller
         menu.frame = CGRect(x:-2048, y: 46, width: appDelegate.screenWidth, height:appDelegate.screenHeight)
         menu.delegate = self
         self.view.addSubview(menu)
+
+        // Set off timer
+        timerSetup()
+        
+        // Winner view stack
+        winnerBackgroundView = UIView(frame: CGRect(x: 0, y: appDelegate.screenHeight, width: appDelegate.screenWidth, height: appDelegate.screenHeight))
+        winnerBackgroundView?.backgroundColor = UIColor.clear
+        
+        let winLogo: UIImage = UIImage(named: "img-instantWin")!
+        winnerImageView = UIImageView(image: winLogo)
+        winnerImageView!.contentMode = UIViewContentMode.scaleAspectFill
+        winnerImageView!.clipsToBounds = true
+        winnerImageView!.frame = CGRect(x: (appDelegate.screenWidth / 2 - 113), y: (appDelegate.screenHeight / 2 - 131), width: 227, height: 218)
+        winnerBackgroundView?.addSubview(winnerImageView!)
+        
+        winnerLabel = UILabel(frame: CGRect(x: 52, y: 125, width: 125, height: 55))
+        winnerLabel!.textAlignment = NSTextAlignment.center
+        winnerLabel!.text = "You’re An Instant Winner! Claim your prize at the Canon Solutions America area"
+        winnerLabel!.numberOfLines = 4
+        winnerLabel!.backgroundColor = UIColor.clear
+        winnerLabel!.textColor = UIColor.white
+        winnerLabel!.font =  UIFont(name: "Helvetica Neue", size: 10)
+        winnerImageView!.addSubview(winnerLabel!)
+        
+        winnerCloseButton = UIButton(frame: CGRect(x: (appDelegate.screenWidth - 48), y: 8, width: 32, height: 32))
+        winnerCloseButton!.backgroundColor =  UIColor.clear
+        let close: UIImage = UIImage(named: "x-mark")!
+        winnerCloseButton?.setImage(close, for: .normal)
+        winnerCloseButton?.touchAreaEdgeInsets = UIEdgeInsetsMake(-10, -10, -10, -10)
+        winnerCloseButton!.addTarget(self, action: #selector(closeWinnerView), for: .touchUpInside)
+        winnerBackgroundView!.addSubview(winnerCloseButton!)
+        
+        self.view.addSubview(winnerBackgroundView!)
+    
     }
     
     //
@@ -90,8 +140,80 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
     //
     func appMovedToBackground() {
         
-        print("App moved to background!")
-        /* Commented out for future development */
+    }
+    
+    //
+    // Close winner view that pops up over the AR Browser
+    //
+    func closeWinnerView() {
+        
+        var yVal = 44
+        
+        if (winnerBackgroundView?.frame.origin.y)! == 44.00 {
+            yVal = appDelegate.screenHeight
+        }
+        
+        weak var weakSelf = self
+        UIView.animate(withDuration: 0.2, animations: {
+            weakSelf!.winnerBackgroundView!.frame.origin.y = CGFloat(yVal)
+            }, completion: {
+                (value: Bool) in
+        })
+    }
+    
+    
+    // MARK: Timer Actions
+    //
+    // Sets up new or invalidates a time to check if a target is being scanned or if a target is a winner
+    //
+    func timerSetup() {
+        
+        if timePaused {
+            // Get an updated set of image markers than have been scanned
+            imageMarkers = appDelegate.partners!.getListOfScannedPartners()
+            
+            // Create a timer to detect if there is a winner or if an item is being
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(targetDetection), userInfo: nil, repeats: true)
+            timePaused = false
+        } else {
+            timer.invalidate()
+            timePaused = true
+        }
+    }
+    
+    //
+    // Callback for the timer running to detect if there is a partner being scanned and if a target is a winner
+    //
+    func targetDetection() {
+        
+        
+        // Make sure that a marker is not scanned while the browser is in the background
+        if !timePaused {
+            print ("Winner text: \(appDelegate.currentUnityController.winner)")
+            print ("Possible text: \(appDelegate.currentUnityController.scannedTarget)")
+        
+            if (appDelegate.currentUnityController.scannedTarget) != nil {
+                let imageTarget = appDelegate.currentUnityController.scannedTarget!
+                // Make sure that partner target has not already been scanned
+                if !imageMarkers.contains(imageTarget) {
+                    if (appDelegate.partners?.updatePartnerObject(imageTargetName: imageTarget))! {
+                        // Update the imageMarkers array
+                        imageMarkers.append(imageTarget)
+                    }
+                }
+            }
+            
+            // Perform winner action
+            if let winnerText = appDelegate.currentUnityController.winner {
+                if winnerText == "true"{
+                    // Display Winner
+                    if (winnerBackgroundView?.frame.origin.y)! == CGFloat(appDelegate.screenHeight) {
+                        closeWinnerView()
+                        appDelegate.currentUnityController.winner = "false"
+                    }
+                }
+            }
+        }
     }
     
     //
@@ -100,8 +222,14 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
     //
     func appMovedToFocus() {
         
-        print("App moved to focus!")
+        parentUnityView!.alpha = 1.0
         
+        // Remove any menu views
+        for bv in self.view.subviews {
+            if bv.tag == 11 {
+                bv.removeFromSuperview()
+            }
+        }
     }
     
     // MARK: Menu Functionality
@@ -120,6 +248,8 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
         if menu.frame.origin.x == 0 {
             // Make sure that if closing the menu that the x variable is over 100 pixels negative
             x = Int(width - (width * 2.5))
+        } else {
+            setInfoAsClosed()
         }
         
         // Bring menu to front of view stack
@@ -148,7 +278,17 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
     //
     @IBAction func infoAction(sender: UIButton) {
         
-        print("Hello")
+        if !infoPressed {
+            let close = UIImage(named: "x-mark") as UIImage?
+            infoButton?.setImage(close, for: .normal)
+            infoPressed = true
+            appDelegate.think2016?.animateHowToPlay(yVal:Int(0.0))
+        } else {
+            let info = UIImage(named: "info") as UIImage?
+            infoButton?.setImage(info, for: .normal)
+            infoPressed = false
+            appDelegate.think2016?.animateHowToPlay(yVal:Int(appDelegate.screenHeight))
+        }
     }
     
     //
@@ -162,24 +302,67 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
                 bv.removeFromSuperview()
             }
         }
+        
         if subViewIndex == 10 {
+            
+            // Make sure Unity sound does fire up in the background
+            appDelegate.soundOn(flag: true)
+
             // Moving from background window to the ARBrowser
             parentUnityView!.alpha = 1.0
             
+            timePaused = true
+            // Update the timer accordingly
+            timerSetup()
+            // Hide info
+            setInfoAsClosed()
+            
         } else  {
+            
+            if !timePaused {
+                // Update the timer accordingly
+                timerSetup()
+            }
+
             // Hide background views
             parentUnityView!.alpha = 0.0
             // Any other subview inheriting from BaseUIView
             if subViewIndex < subviews.count {
+                
                 let selectedSubview: BaseUIView = subviews[subViewIndex]
                 selectedSubview.setIndex(index: subViewIndex)
                 selectedSubview.reflowLayout(width: self.view.frame.size.width, height: self.view.frame.size.height)
+                
+                // Reload the partner data
+                if subViewIndex == 0 {
+                    appDelegate.reloadPartnerData()
+                    infoButton?.alpha = 1.0
+                    appDelegate.think2016?.addProgressView()
+                } else {
+                    setInfoAsClosed()
+                }
+                
                 self.view.addSubview(selectedSubview)
                 subviewPresent = true
             } else {
                 subviewPresent = false
             }
+            
+            // Make sure Unity sound does not fire up in the background
+            appDelegate.soundOn(flag: false)
         }
+    }
+    
+    //
+    // Function to hide the close button in multiple places
+    //
+    func setInfoAsClosed() {
+        
+        infoButton?.alpha = 0.0
+        let info = UIImage(named: "info") as UIImage?
+        infoButton?.setImage(info, for: .normal)
+        infoPressed = true
+        appDelegate.think2016?.animateHowToPlay(yVal:Int(appDelegate.screenHeight))
     }
     
     // MARK: Menu delegate callback
@@ -196,6 +379,9 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
         menuAction(sender: hamburgerButton!)
     }
     
+    //
+    // Swipe gesture close callback
+    //
     func swipeClose() {
         
         // If the x value on the menu is less than zero return and do not do anything
@@ -225,49 +411,27 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
     }
     
     
-    // MARK: Call thINK - Custom button delegate functions
+    // MARK: Contact thINK - Custom button delegate functions
     //
+    // Contact thINK URL Callback
     //
-    //
-    func callthINK(scheme: String) {
+    func contactthINK(url: String) {
         
-        if let url = URL(string: scheme) {
+        if let url = URL(string: url) {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url, options: [:],
                                           completionHandler: {
                                             (success) in
-                                            print("Open \(scheme): \(success)")
-                })
-            } else {
-                let success = UIApplication.shared.openURL(url)
-                print("Open \(scheme): \(success)")
-            }
-        }
-    }
-    
-    // MARK: Open Privacy Statement - Custom button delegate functions
-    //
-    //
-    //
-    /*
-     func openPrivacyStatement(url: String) {
-     
-        if let url = URL(string: url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:],
-                                      completionHandler: {
-                                        (success) in
-                                        print("Open \(url): \(success)")
+                                            print("Open \(url): \(success)")
                 })
             } else {
                 let success = UIApplication.shared.openURL(url)
                 print("Open \(url): \(success)")
             }
         }
-     }
-    */
-    // MARK: Contact Delegate Functions
-    // MARK: Call thINK - Custom button delegate functions
+    }
+    
+    // MARK: Email thINK - Custom button delegate functions
     //
     // Actually performs the action of sending the email
     //
@@ -283,7 +447,7 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
     
     // MARK: Send Email Functions
     //
-    //
+    // Send an email with the default email client
     //
     func configuredMailComposeViewController(email: String) -> MFMailComposeViewController {
         
@@ -322,7 +486,7 @@ class ARBrowserViewController: UIViewController, MenuProtocol, MarkerProtocol, C
     }
     
     //
-    //
+    // Show an error if the email could not be sent
     //
     func showSendMailErrorAlert() {
         
